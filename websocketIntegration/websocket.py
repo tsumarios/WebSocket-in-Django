@@ -1,6 +1,8 @@
+import os
 from django.dispatch import receiver
 from websocketIntegration.signals import update_signal
-from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
+from websocketIntegration.settings import BASE_DIR
+from SimpleWebSocketServer import SimpleWebSocketServer, SimpleSSLWebSocketServer, WebSocket
 
 import logging
 logger = logging.getLogger()
@@ -38,7 +40,8 @@ class WebSocketHandler(WebSocket):
 
 
 class WSServerWrapper():
-    # To use WSS: SimpleSSLWebSocketServer('', 5678, WebSocketHandler, certfile='<path_to_cert.pem>', keyfile='<path_to_key.pem>')
+    # NOTE: to use WSS, assuming the certificate and private key are in the base directory, switch the ws_server from SimpleWebSocketServer to SimpleSSLWebSocketServer.
+    # ws_server = SimpleSSLWebSocketServer('', 5678, WebSocketHandler, certfile=os.path.join(BASE_DIR, 'cert.pem'), keyfile=os.path.join(BASE_DIR, 'key.pem'))
     ws_server = SimpleWebSocketServer('', 5678, WebSocketHandler)
 
     @staticmethod
