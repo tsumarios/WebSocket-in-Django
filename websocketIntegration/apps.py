@@ -1,5 +1,5 @@
 from django.apps import AppConfig
-from threading import Event, Thread
+from threading import Thread
 from websocketIntegration.settings import DEFAULT_WS_PORT
 
 
