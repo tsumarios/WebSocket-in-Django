@@ -1,8 +1,9 @@
 import os
 from django.dispatch import receiver
 from websocketIntegration.signals import update_signal
-from websocketIntegration.settings import BASE_DIR
+from websocketIntegration.settings import BASE_DIR, DEFAULT_WS_PORT
 from SimpleWebSocketServer import SimpleWebSocketServer, SimpleSSLWebSocketServer, WebSocket
+from threading import Event
 
 import logging
 logger = logging.getLogger()
@@ -40,11 +41,13 @@ class WebSocketHandler(WebSocket):
 
 
 class WSServerWrapper():
+    ws_started_event = Event()
     # NOTE: to use WSS, assuming the certificate and private key are in the base directory, switch the ws_server from SimpleWebSocketServer to SimpleSSLWebSocketServer.
-    # ws_server = SimpleSSLWebSocketServer('', 5678, WebSocketHandler, certfile=os.path.join(BASE_DIR, 'cert.pem'), keyfile=os.path.join(BASE_DIR, 'key.pem'))
-    ws_server = SimpleWebSocketServer('', 5678, WebSocketHandler)
+    # ws_server = SimpleSSLWebSocketServer('', DEFAULT_WS_PORT, WebSocketHandler, certfile=os.path.join(BASE_DIR, 'cert.pem'), keyfile=os.path.join(BASE_DIR, 'key.pem'))
+    ws_server = SimpleWebSocketServer('', DEFAULT_WS_PORT, WebSocketHandler)
 
     @staticmethod
     def run():
         logger.info('Starting WebSocket server')
+        WSServerWrapper.ws_started_event.set()
         WSServerWrapper.ws_server.serveforever()
