@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+title: WebSocket Integration in Django
+message: Please cite this software using these metadata.
+type: software
+authors:
+  - given-names: Mario
+    family-names: Raciti
+    email: mario.raciti@inaf.it
+    affiliation: INAF - Osservatorio Astrofisico di Catania
+    orcid: 'https://orcid.org/0000-0002-7045-0213'
+repository-code: 'https://github.com/tsumarios/WebSocket-in-Django'
