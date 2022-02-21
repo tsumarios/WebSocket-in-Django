@@ -4,6 +4,11 @@ Simple PoC of the integration of a loosely coupled WebSocket server within a Dja
 
 This demo is part of the "WebSocket Integration in Django" technical report, available at <TODO:link>.
 
+## Project Structure
+
+The structure consists of a Django project created and set up properly according to the default and standard Django architecture. The WebSocket-related code is gathered into a single file, [websocket.py](https://github.com/tsumarios/WebSocket-in-Django/blob/main/websocketIntegration/websocket.py), and it is composed of two classes: *WebSocketHandler* and *WSServerWrapper*. The aim of the former is, as suggested by its name, to manage the WebSocket interations with the clients (i.e., send messages, handle received messages, etc.), whilst the wrapper class is used just to wrap and run a *SimpleWebSocketServer* specifically configured for the handler class. The integration is completed by starting the WebSocket service in a new thread. This will ensure the WebSocket server to have the
+proper Django context and its own execution life within the Django application. Finally, a simple WebSocket JS client in the [websocket.html](https://github.com/tsumarios/WebSocket-in-Django/blob/main/client/websocket.html) file can be used to test the expected behaviour and play with the WS server.
+
 ## Dependencies
 
 This project is developed using the [Django Python framework](https://www.djangoproject.com) and the [SimpleWebSocketServer](https://github.com/dpallot/simple-websocket-server/blob/master/SimpleWebSocketServer/SimpleWebSocketServer.py) module.
