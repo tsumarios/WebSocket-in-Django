@@ -2,7 +2,7 @@
 
 Simple PoC of the integration of a loosely coupled WebSocket server within a Django application.
 
-This demo is part of the "WebSocket Integration in Django" technical report, available at <TODO:link>.
+This demo is part of the "WebSocket Integration in Django" INAF technical report, available at https://hdl.handle.net/20.500.12386/31533.
 
 ## Project Structure
 
