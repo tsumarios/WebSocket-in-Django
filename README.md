@@ -25,7 +25,7 @@ source venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
-Then, you can run the Django application within the WebSocket server type the following command:
+Then, you can run the Django application within the WebSocket server by typing the following command:
 
 ```sh
 python3 manage.py runserver --noreload [port]
